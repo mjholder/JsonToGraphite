@@ -33,3 +33,9 @@ If no "REQUIRED" dependency messages print then run
 ```
 # sudo python setup.py install
 ```
+Next copy the local_settings file
+```
+# cd /opt/graphite/webapp/graphite
+# cp local_settings.py.example local_settings.py
+```
+Modify this file if you want to change any of the Webapp settings
