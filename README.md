@@ -24,7 +24,11 @@ Next you need to start the carbon-cache script. This script starts the connectio
 # cd /opt/graphite/bin
 # service carbon-cache.py start
 ```
-By default Grafana uses port 3000 and the carbon-cache uses port 2004. To change the port used by Grafana, edit in /etc/grafana/grafana.ini the http_port variable under the [server] section. To change the port
+By default Grafana uses port 3000 and the carbon-cache uses port 2004. 
+
+To change the port used by Grafana, edit in /etc/grafana/grafana.ini the http_port variable under the [server] section. 
+
+To change the port
 ### Installing and running the Graphite Webapp
 ```
 # cd /tmp
