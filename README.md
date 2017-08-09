@@ -19,7 +19,13 @@ Next copy the example configuration files
 # cp storage-aggregation.conf.example storage-aggregation.conf
 # cp whitelist.conf.example whitelist.conf
 ```
-### Installing the Graphite Webapp
+Next you need to start the carbon-cache script. This script starts the connection between carbon's whisper database and the JsonToGraphite script.
+```
+# cd /opt/graphite/bin
+# service carbon-cache.py start
+```
+By default Grafana uses port 3000 and the carbon-cache uses port 2004. To change the port used by Grafana, edit in /etc/grafana/grafana.ini the http_port variable under the [server] section. To change the port
+### Installing and running the Graphite Webapp
 ```
 # cd /tmp
 # git clone https://github.com/graphite-project/graphite-web.git
@@ -33,9 +39,17 @@ If no "REQUIRED" dependency messages print then run
 ```
 # sudo python setup.py install
 ```
-Next copy the local_settings file
+Next copy the local_settings file. Modify this file if you want to change any of the Webapp settings
 ```
 # cd /opt/graphite/webapp/graphite
 # cp local_settings.py.example local_settings.py
 ```
-Modify this file if you want to change any of the Webapp settings
+To run the Webapp use the following commands
+```
+# cd /opt/graphite
+# PYTHONPATH=/whisper ./bin/run-graite-devel-server.py --libs=/webapp/ /opt/graphite/
+```
+By default the Webapp will run on port 8080, this can be changed by adding "--port=(port number)". I.e. running on port 8585
+```
+#  PYTHONPATH=/whisper ./bin/run-graite-devel-server.py --libs=/webapp/ /opt/graphite/ --port=8585
+```
