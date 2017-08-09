@@ -28,7 +28,7 @@ By default Grafana uses port 3000 and the carbon-cache uses port 2004.
 
 To change the port used by Grafana, edit in /etc/grafana/grafana.ini the http_port variable under the [server] section. 
 
-To change the port
+To change the carbon-cache port, edit in /opt/graphite/conf/carbon.conf the PICKLE_RECEIVER_PORT number.
 ### Installing and running the Graphite Webapp
 ```
 # cd /tmp
