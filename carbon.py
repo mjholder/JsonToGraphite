@@ -128,4 +128,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#mainPickle('timeseries-resource_1.json', '30s', '1d')
