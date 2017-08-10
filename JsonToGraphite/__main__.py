@@ -84,6 +84,7 @@ def mainPickle(inJson, inter, timeS):
                 timeSpan = timeToSeconds(timeS)
                 whisper.create('/opt/graphite/storage/whisper/JOBS/' + str(job['_id'])[:7] + '/' + str(diction['target']) + '.wsp', [(interval, timeSpan/interval)], 0.5, 'average', 'store_true', 'store_true')
             except:
+                # This catches exceptions thrown by whisper for attempting to create files that already exist
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 if str(exc_value)[-15:] != 'already exists!':
                     print('Unexpected error: ' + str(exc_value))
@@ -134,4 +135,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#mainPickle('timeseries-resource_1.json', '30s', '1d')
