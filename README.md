@@ -8,6 +8,10 @@ Note: This was created on a Centos 7 system
 ```
    # yum install python-cffi
 ```
+* Pip
+```
+   # yum install python-pip
+```
 * Django 
 ``` 
    # pip install django
@@ -28,11 +32,31 @@ Note: This was created on a Centos 7 system
 ```
    # yum install pycairo-devel
 ```
+* Cairo-cffi
+```
+   # yum install cairocffi
+```
+* Scandir
+```
+   # yum install python-scandir
+```
 
 ### Installing Grafana/Graphite:
+Install Grafana
 ```
 # wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.X.X-X.x86_64.rpm
 # yum install grafana-4.X.X-X.x86_64.rpm
+```
+Install Graphite
+```
+# yum groupinstall "Development Tools"
+# yum install python-devel
+# yum install git
+# sudo pip install twisted
+# cd /tmp
+# git clone https://github.com/graphite-project/carbon.git
+# cd /tmp/carbon
+# python setup.py install
 ```
 Next copy the example configuration files
 ```
@@ -47,10 +71,17 @@ Next copy the example configuration files
 # cp storage-aggregation.conf.example storage-aggregation.conf
 # cp whitelist.conf.example whitelist.conf
 ```
+Install Whisper
+```
+# cd /tmp
+# git clone https://github.com/graphite-project/whisper.git
+# cd /tmp/whisper
+# python setup.py install
+```
 Next you need to start the carbon-cache script. This script starts the connection between carbon's whisper database and the JsonToGraphite script.
 ```
 # cd /opt/graphite/bin
-# service carbon-cache.py start
+# ./carbon-cache.py start
 ```
 By default Grafana uses port 3000 and the carbon-cache uses port 2004. 
 
@@ -76,10 +107,14 @@ Next copy the local_settings file. Modify this file if you want to change any of
 # cd /opt/graphite/webapp/graphite
 # cp local_settings.py.example local_settings.py
 ```
+Be sure to uncomment DEBUG=True in local_settings.py, otherwise certain parts of the graphite web page won't appear and you will get 404 errors in the log.
+
 To run the Webapp use the following commands
 ```
+export PYTHONPATH=$PYTHONPATH:/webapp
+# PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
 # cd /opt/graphite
-# PYTHONPATH=/whisper ./bin/run-graite-devel-server.py --libs=/webapp/ /opt/graphite/
+# PYTHONPATH=/whisper ./bin/run-graphite-devel-server.py --libs=/webapp/ /opt/graphite/
 ```
 By default the Webapp will run on port 8080, this can be changed by adding "--port=(port number)". I.e. running on port 8585
 ```
@@ -99,3 +134,21 @@ Before running JsonToCarbon make sure carbon-cache is running and the json file 
 JsonToCarbon -f filename
 ```
 Use the argument -h for help
+### Using Grafana
+Start Grafana with
+```
+# service grafana-server start
+```
+If you want Grafana to start on boot run
+```
+# systemctl enable grafana-server.service
+```
+Next to access Grafana, on a browser go to whatever ip and port you chose in grafana.ini earlier, or the default is 0.0.0.0:3000.
+
+Login or create an account
+
+Then when creating a data source, select graphite as the type, the source should be whatever you have the graphite running on (default being 0.0.0.0:8080), and make sure the access type is proxy.
+
+When saving the datasource it will automatically check if the datasource works.
+
+And that's it!
