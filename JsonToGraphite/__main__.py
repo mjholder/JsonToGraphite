@@ -68,6 +68,8 @@ def timeToSeconds(inTime):
 
 # This method handles creating the files for whisper and population of the files
 def mainPickle(inJson, inter, timeS):
+    global CARBON_SERVER
+    global CARBON_PORT
     jFile = open(inJson)
     sock = socket.socket()
     sock.connect((CARBON_SERVER, CARBON_PORT))
@@ -103,14 +105,15 @@ def mainPickle(inJson, inter, timeS):
 
 def main():
     opts, _ = getopt(sys.argv[1:], "p:s:t:f:h")
-
+    global CARBON_SERVER
+    global CARBON_PORT
     f = ''
     i = '30s'
     t = '7d'
 
     for opt in opts:
         if opt[0] == '-p':
-            CARBON_PORT = opt[1]
+            CARBON_PORT = int(opt[1])
 
         if opt[0] == '-s':
             CARBON_SERVER = opt[1]
