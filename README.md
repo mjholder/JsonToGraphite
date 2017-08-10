@@ -55,6 +55,19 @@ To run the Webapp use the following commands
 ```
 By default the Webapp will run on port 8080, this can be changed by adding "--port=(port number)". I.e. running on port 8585
 ```
-#  PYTHONPATH=/whisper ./bin/run-graite-devel-server.py --libs=/webapp/ /opt/graphite/ --port=8585
+# PYTHONPATH=/whisper ./bin/run-graite-devel-server.py --libs=/webapp/ /opt/graphite/ --port=8585
 ```
 ### Installing and using JsonToCarbon
+To install, go to the directory where setup.py is located and run
+```
+# python setup.py bdist_rpm
+```
+And to install the rpm run
+```
+# yum install dist/JsonToCarbon-x.x_x.noarch.rpm
+```
+Before running JsonToCarbon make sure carbon-cache is running and the json file you want to import to Graphite is in the same directory you are in. To run JsonToCarbon use
+```
+JsonToCarbon -f filename
+```
+Use the argument -h for help
