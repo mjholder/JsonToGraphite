@@ -25,7 +25,8 @@ def usage():
     print "                (default port is 2004)."
     print " -h             display this help message and exit."
 
-
+# This function takes in all of a job's data and outputs it as a list of dictionaries
+# [{target : metricName, datapoints : [[datapoint, time], [datapoint, time], ...]}, ...]
 def build(job):
     out = []
     keys = job.keys()
@@ -38,6 +39,7 @@ def build(job):
         try:
             times = job[target]['times']
         except:
+            # This filters out metrics in a job that don't have any data
             canGo = False
             print 'Error in ' + job['_id'][:7] + ' ' + target
         if canGo:
@@ -64,6 +66,7 @@ def timeToSeconds(inTime):
         print 'invalid time format'
         return 0
 
+# This method handles creating the files for whisper and population of the files
 def mainPickle(inJson, inter, timeS):
     jFile = open(inJson)
     sock = socket.socket()
@@ -89,8 +92,7 @@ def mainPickle(inJson, inter, timeS):
                 path = str('JOBS.' + str(job['_id'])[:7] + '.' + str(diction['target']))
                 value = diction['datapoints'][point][0]
                 times = diction['datapoints'][point][1]
-                #temp = (path, (times, value))
-                temp = (path, (time.time() - point*30, value))
+                temp = (path, (times, value))
                 message.append(temp)
             package = pickle.dumps(message, 1)
             size = struct.pack('!L', len(package))
