@@ -2,7 +2,7 @@
 Graphite Setup and Json converter + instructions
 
 ### Dependencies
-Note: This was created on a Centos 7 system
+Note: This was created on a Centos 7 system and most of the commands will require root privilages/sudo
 
 * Python-cffi
 ```
