@@ -2,25 +2,31 @@
 Graphite Setup and Json converter + instructions
 
 ### Dependencies
+Note: This was created on a Centos 7 system
+
+* Python-cffi
+```
+   # yum install python-cffi
+```
 * Django 
 ``` 
-   #
-```
-* Pyparsing
-```
-   #
+   # pip install django
 ```
 * Django-Tagging
 ```
-   #
+   # pip install django-tagging
+```
+* Pyparsing
+```
+   # pip install pyparsing
 ```
 * Cairo
 ```
-   #
+   # yum install cairo-devel
 ```
 * Pycairo
 ```
-   #
+   # yum install pycairo-devel
 ```
 
 ### Installing Grafana/Graphite:
