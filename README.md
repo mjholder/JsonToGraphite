@@ -2,11 +2,26 @@
 Graphite Setup and Json converter + instructions
 
 ### Dependencies
-* Django
+* Django 
+``` 
+   #
+```
 * Pyparsing
+```
+   #
+```
 * Django-Tagging
+```
+   #
+```
 * Cairo
+```
+   #
+```
 * Pycairo
+```
+   #
+```
 
 ### Installing Grafana/Graphite:
 ```
