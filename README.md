@@ -131,7 +131,7 @@ And to install the rpm run
 ```
 Before running JsonToCarbon make sure carbon-cache is running and the json file you want to import to Graphite is in the same directory you are in. To run JsonToCarbon use
 ```
-JsonToCarbon -f filename
+# JsonToCarbon -f filename
 ```
 Use the argument -h for help
 ### Using Grafana
