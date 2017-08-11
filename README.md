@@ -152,3 +152,10 @@ Then when creating a data source, select graphite as the type, the source should
 When saving the datasource it will automatically check if the datasource works.
 
 And that's it!
+
+More info on how to use Grafana/Graphite can be found here
+> http://docs.grafana.org/features/datasources/graphite/
+
+and 
+
+> http://docs.grafana.org/guides/getting_started/
