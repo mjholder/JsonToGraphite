@@ -52,7 +52,7 @@ Install Graphite
 # yum groupinstall "Development Tools"
 # yum install python-devel
 # yum install git
-# sudo pip install twisted
+# pip install twisted
 # cd /tmp
 # git clone https://github.com/graphite-project/carbon.git
 # cd /tmp/carbon
