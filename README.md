@@ -100,7 +100,7 @@ To check if you installed all the dependencies use
 ```
 If no "REQUIRED" dependency messages print then run
 ```
-# sudo python setup.py install
+# python setup.py install
 ```
 Next copy the local_settings file. Modify this file if you want to change any of the Webapp settings
 ```
