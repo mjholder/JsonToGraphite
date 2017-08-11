@@ -111,7 +111,7 @@ Be sure to uncomment DEBUG=True in local_settings.py, otherwise certain parts of
 
 To run the Webapp use the following commands
 ```
-export PYTHONPATH=$PYTHONPATH:/webapp
+# export PYTHONPATH=$PYTHONPATH:/webapp
 # PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb
 # cd /opt/graphite
 # PYTHONPATH=/whisper ./bin/run-graphite-devel-server.py --libs=/webapp/ /opt/graphite/
