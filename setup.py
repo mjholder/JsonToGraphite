@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-    name='JsonToCarbon',
+    name='JsonToGraphite',
     version='1.0',
-    packages=['JsonToCarbon'],
+    packages=['JsonToGraphite'],
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'JsonToCarbon = JsonToCarbon.__main__:main'
+            'JsonToGraphite = JsonToGraphite.__main__:main'
         ]
     }
 )
